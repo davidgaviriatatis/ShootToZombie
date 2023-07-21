@@ -8,16 +8,18 @@ public class Ai : MonoBehaviour
     public NavMeshAgent navMeshAgent;
 
     GameObject destination1;
+    EnemyState enemyState;
     float distance = 100;
 
     void Start()
     {
         destination1 = GameObject.Find("Player");
+        enemyState = gameObject.GetComponent<EnemyState>();
     }
 
     void Update()
     {
-        if (gameObject.GetComponent<EnemyState>().isDead || gameObject.GetComponent<EnemyState>().isAtacking)
+        if (enemyState.isDead || enemyState.isAtacking)
         {
             navMeshAgent.destination = transform.position;
         }
@@ -28,13 +30,13 @@ public class Ai : MonoBehaviour
 
         distance = Vector3.Distance(transform.position, destination1.transform.position);
 
-        if (distance <= 3 && !gameObject.GetComponent<EnemyState>().isDead)
+        if (distance <= 3 && !enemyState.isDead)
         {
-            gameObject.GetComponent<EnemyState>().isAtacking = true;
+            enemyState.isAtacking = true;
         }
         else
         {
-            gameObject.GetComponent<EnemyState>().isAtacking = false;
+            enemyState.isAtacking = false;
         }
     }
 }

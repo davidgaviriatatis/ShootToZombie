@@ -34,6 +34,7 @@ public class SpawnEnemies : MonoBehaviour
         if (enemies.Count <= 0)
         {
             GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+            newEnemy.SetActive(true);
             enemies.Add(newEnemy);
             activatedEnemy = true;
             GameManager.Instance.enemiesSpawned++;
@@ -55,7 +56,9 @@ public class SpawnEnemies : MonoBehaviour
 
         if (!activatedEnemy && enemies.Count < 3)
         {
-            enemies.Add(Instantiate(enemyPrefab, transform.position, transform.rotation));
+            GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+            newEnemy.SetActive(true);
+            enemies.Add(newEnemy);
             GameManager.Instance.enemiesSpawned++;
         }
 

@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
-    float x, y, gravity = -9.81f, sphereRadius = 0.3f;
+    float x, z, gravity = -9.81f, sphereRadius = 0.3f;
     bool isGrounded;
 
     void Start()
@@ -30,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
             }
 
             x = Input.GetAxis("Horizontal");
-            y = Input.GetAxis("Vertical");
+            z = Input.GetAxis("Vertical");
 
-            Vector3 move = transform.right * x + transform.forward * y;
+            Vector3 move = transform.right * x + transform.forward * z;
 
             characterController.Move(move * speed * Time.deltaTime);
 
